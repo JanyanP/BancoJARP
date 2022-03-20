@@ -6,7 +6,10 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
@@ -36,8 +39,7 @@ public class Tarjeta implements Serializable{
 	@Column(name="tipo_tarjeta")
 	@NotEmpty
 	private String tipoTarjeta;
-	
-	
+
 	public long getIdTarjeta() {
 		return idTarjeta;
 	}
@@ -81,5 +83,6 @@ public class Tarjeta implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
+	
 }

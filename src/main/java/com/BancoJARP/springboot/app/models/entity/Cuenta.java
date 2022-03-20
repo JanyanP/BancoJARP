@@ -4,17 +4,20 @@ package com.BancoJARP.springboot.app.models.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name= "cuentas")
@@ -27,9 +30,6 @@ public class Cuenta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCuenta;
 	
-	@Column
-	private long idCliente;
-	
 	@Column(name="saldo_actual")
 	@NotEmpty
 	private double saldoActual;
@@ -38,6 +38,9 @@ public class Cuenta implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date creacion;
+	
+	@Column
+	private long idCliente;
 
 	public long getIdCuenta() {
 		return idCuenta;
@@ -45,14 +48,6 @@ public class Cuenta implements Serializable{
 
 	public void setIdCuenta(long idCuenta) {
 		this.idCuenta = idCuenta;
-	}
-
-	public long getIdCliente() {
-		return idCliente;
-	}
-
-	public void setIdCliente(long idCliente) {
-		this.idCliente = idCliente;
 	}
 
 	public double getSaldoActual() {
@@ -71,8 +66,17 @@ public class Cuenta implements Serializable{
 		this.creacion = creacion;
 	}
 
+	public long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(long idCliente) {
+		this.idCliente = idCliente;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	
 }
